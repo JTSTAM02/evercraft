@@ -7,8 +7,9 @@ class Characters:
     def __init__(self):
         self.name = "Eric Emery the Destroyer"
         self.alignment = "Neutral"
-        self.armor = '10'
-        self.hitpoints = '5'
+        self.armor_class = 10
+        self.hit_points = 5
+        self.attack_power = 5
 
 # take in a string
     def set_name(self, n):
@@ -21,14 +22,28 @@ class Characters:
     def set_alignment(self, n):
         self.alignment = n
 
-    # def get_armor(self):
-    #     return self.armor
+    def take_damage(self, damage):
+        if damage > 0:
+            self.hit_points -= damage
 
-    # def set_armor(self, n):
-    #     self.armor = n
+    def is_alive(self):
+        return self.hit_points > 0
 
-    # def get_hit_points(self, n):
-    #     self.hitpoints = n
 
-    # def set_hit_points(self, n):
-    #     self.hitpoints = n
+    def get_armor_class(self):
+        return self.armor_class
+
+    def set_armor_class(self, n):
+        self.armor_class = n
+
+    def get_character_attack(self):
+        return self.attack_power
+
+    def set_character_attack(self, n):
+        self.attack_power = n
+
+    def attack(self, opponent):
+        roll = '15'  # Placeholder value for the roll, replace with actual implementation
+        if roll == '20':
+            return True  
+        return roll >= opponent.get_armor_class()
