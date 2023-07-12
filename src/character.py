@@ -10,11 +10,15 @@ class Characters:
         self.armor_class = 10
         self.hit_points = 5
         self.attack_power = 5
+        self.mock_roll = 15
 
+    
 # take in a string
     def set_name(self, n):
         self.name = n
 
+    def mock_roll(self):
+        return self.mock_roll
 
     def get_alignment(self):
         return self.alignment
@@ -25,6 +29,8 @@ class Characters:
     def take_damage(self, damage):
         if damage > 0:
             self.hit_points -= damage
+        if self.hit_points <= 0:
+            self.hit_points = 0
 
     def is_alive(self):
         return self.hit_points > 0
@@ -43,7 +49,9 @@ class Characters:
         self.attack_power = n
 
     def attack(self, opponent):
-        roll = '15'  # Placeholder value for the roll, replace with actual implementation
-        if roll == '20':
+        roll = 15  # Placeholder value for the roll, replace with actual implementation
+        if roll == 20:
             return True  
         return roll >= opponent.get_armor_class()
+
+    

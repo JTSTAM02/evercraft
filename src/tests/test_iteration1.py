@@ -1,4 +1,5 @@
 import pytest
+from unittest.mock import patch
 
 from character import Characters
 def test_get_name():                        
@@ -72,5 +73,42 @@ def test_set_character_attack():
     i = Characters ()
     i.set_character_attack(5)
     assert i.get_character_attack() == 5
+
+def test_attack():
+    attacker = Characters()
+    defender = Characters()
+    defender.set_armor_class(10)
+
+    # Mocking the roll value for the test case
+    def mock_roll(opponent):
+        return 15
+
+    # Mocking the opponent's get_armor_class method
+    # def mock_get_armor_class():
+    #     return 10
+
+    # Mocking the attack method
+    attacker.attack = mock_roll
+    # defender.get_armor_class = mock_get_armor_class
+
+    assert attacker.attack(defender) == True
+
+
+
+# Feature: Character Can Be Damaged
+# As an attacker I want to be able to damage my enemies so that they will die and I will live
+
+# If attack is successful, other character takes 1 point of damage when hit
+# If a roll is a natural 20 then a critical hit is dealt and the damage is doubled
+# when hit points are 0 or fewer, the character is dead
+
+# def test_take_damage():
+#     character = Characters()
+#     character.take_damage(3)
+#     assert character.hit_points == 2
+
+#     character.take_damage(5)
+#     assert character.hit_points == 0
+#     assert character.is_alive() == False
 
     
