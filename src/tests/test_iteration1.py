@@ -35,16 +35,18 @@ def test_set_alignment():
 # has an Armor Class that defaults to 10
 # has 5 Hit Points by default
 
-def test_take_damage():
-    c = Characters()
-    c.take_damage(3)
-    assert c.hit_points == 2
+# _____
+
+# def test_take_damage():
+#     c = Characters()
+#     c.take_damage(3)
+#     assert c.hit_points == 2
 
 def test_is_alive():
     f = Characters()
     assert f.is_alive() == True
 
-    f.take_damage(5)
+    f.take_damage(5, 0)
     assert f.is_alive() == False
 
 
@@ -90,11 +92,54 @@ def test_attack():
 # when hit points are 0 or fewer, the character is dead
 
 def test_take_damage():
-    character = Characters()
-    character.take_damage(3)
-    assert character.hit_points == 2
+    m = Characters()
 
-    character.take_damage(5)
-    assert character.hit_points == 0
-    assert character.is_alive() == False
+    m.take_damage(3, 0)
+    assert m.hit_points == 2
+
+    m.take_damage(20, 0)
+    assert m.hit_points == 0
+    assert m.is_alive() == False
+
+# Feature: Character Has Abilities Scores
+# As a character I want to have several abilities so that I am not identical to other characters except in name
+
+# Abilities are Strength, Dexterity, Constitution, Wisdom, Intelligence, Charisma
+# Abilities range from 1 to 20 and default to 10
+# Abilities have modifiers according to the following table
+# Score	Modifier	Score	Modifier	Score	Modifier	Score	Modifier
+# 1	-5	6	-2	11	0	16	+3
+# 2	-4	7	-2	12	+1	17	+3
+# 3	-4	8	-1	13	+1	18	+4
+# 4	-3	9	-1	14	+2	19	+4
+# 5	-3	10	0	15	+2	20	+5
+
+def test_ability_scores():
+    character = Characters()
+
+    assert character.get_ability_score('Strength') == 10
+    assert character.get_ability_modifier('Strength') == 0
+
+    character.set_ability_score('Strength', 15)
+    assert character.get_ability_score('Strength') == 15
+    assert character.get_ability_modifier('Strength') == 2
+
+    character.set_ability_score('Intelligence', 25)
+    assert character.get_ability_score('Intelligence') == 25
+    assert character.get_ability_modifier('Intelligence') == 7
+
+    assert character.get_ability_score('Agility') is None
+    assert character.get_ability_modifier('Agility') is None
+
+
+# Feature: Character Ability Modifiers Modify Attributes
+# As a character I want to apply my ability modifiers improve my capabilities in combat so that I can vanquish my enemy with extreme prejudice
+
+# add Strength modifier to:
+# attack roll and damage dealt
+# double Strength modifier on critical hits
+# minimum damage is always 1 (even on a critical hit)
+# add Dexterity modifier to armor class
+# add Constitution modifier to hit points (always at least 1 hit point)
+
 
