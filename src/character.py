@@ -2,7 +2,7 @@
 # As a character I want to have a name so that I can be distinguished from other characters
 
 # can get and set Name
-
+import random
 class Characters:
     def __init__(self):
         self.name = "Eric Emery the Destroyer"
@@ -10,8 +10,6 @@ class Characters:
         self.armor_class = 10
         self.hit_points = 5
         self.attack_power = 5
-        self.mock_roll = 15
-
     
 # take in a string
     def set_name(self, n):
@@ -48,8 +46,7 @@ class Characters:
     def set_character_attack(self, n):
         self.attack_power = n
 
-    def attack(self, opponent):
-        roll = 15  # Placeholder value for the roll, replace with actual implementation
+    def attack(self, opponent, roll):
         if roll == 20:
             return True  
         return roll >= opponent.get_armor_class()

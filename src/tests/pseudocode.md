@@ -24,7 +24,7 @@
      - Return the armor class value of the character.
 
 
-    ## Functional
+## Functional
 
 1. Create a class called "Characters".
 2. Inside the class:
