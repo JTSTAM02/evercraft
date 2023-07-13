@@ -23,7 +23,7 @@ class Characters:
             'Charisma': 10
         }
 
-#-----SET NAME AND FAKE FUNCTION FOR ROLL-----------------------
+#-----SET NAME AND FAKE FUNCTION FOR ROLL------------------------
 
     def set_name(self, n):
         self.name = n
@@ -31,7 +31,7 @@ class Characters:
     def mock_roll(self):
         return self.mock_roll
 
-#------ALIGNMENT------------------------------------------------
+#------ALIGNMENT-------------------------------------------------
 
     def get_alignment(self):
         return self.alignment
@@ -41,6 +41,7 @@ class Characters:
 
 #------ARMOR CLASS AND HITPOINTS---------------------------------
 #------ALSO CHARACTER CAN BE DAMAGED-----------------------------
+
     def take_damage(self, damage):
         if damage > 0:
             self.hit_points -= damage
@@ -59,15 +60,14 @@ class Characters:
     def is_alive(self):
         return self.hit_points > 0
 
-
     def get_armor_class(self):
-        return self.armor_class
+        return self.armor_class 
 
     def set_armor_class(self, n):
         self.armor_class = n
 
-#------CHARACTER CAN ATTACK----------------------------------
-#------ALSO GAIN EXPERIENCE WHEN ATTACKING-------------------
+#------CHARACTER CAN ATTACK-------------------------------------
+#------ALSO GAIN EXPERIENCE WHEN ATTACKING----------------------
 
     def get_character_attack(self):
         return self.attack_power
@@ -75,7 +75,7 @@ class Characters:
     def set_character_attack(self, n):
         self.attack_power = n
 
-    def attack(self, opponent, roll):
+    def attack(self, opponent, roll): 
         if roll == 20:
             return True
         return roll >= opponent.get_armor_class()
@@ -88,23 +88,22 @@ class Characters:
         if self.attack == True:
             return self.experience_points
 
-#-----ABILITY SCORES--------------------------------------------
+#-----ABILITY SCORES---------------------------------------------
 
-    def get_ability_score(self, ability):
-        if ability in self.abilities:
-            return self.abilities[ability]
+    def get_ability_score(self, abilities):
+        if abilities in self.abilities:
+            return self.abilities[abilities]
         else:
             return None
 
-    def set_ability_score(self, ability, score):
-        if ability in self.abilities:
-            self.abilities[ability] = score
+    def set_ability_score(self, abilities, score):
+        if abilities in self.abilities:
+            self.abilities[abilities] = score
 
-#-----ABILITY MODIFIERS----------------------------------------
+#-----ABILITY MODIFIERS------------------------------------------
 
-
-    def get_ability_modifier(self, ability):
-        score = self.get_ability_score(ability)
+    def get_ability_modifier(self, abilities):
+        score = self.get_ability_score(abilities)
         if score is not None:
             return (score - 10) // 2
         return None
@@ -125,9 +124,9 @@ class Characters:
             self.hit_points = 1
 
         if self.level + 1:
-            return constitution_modifier +1
+            return constitution_modifier + 1
 
-#------CHARACTER LEVEL/LEVELING-------------------------------------------
+#------CHARACTER LEVEL/LEVELING-------------------------------------
 
     def character_level(self):
         if(self.level_experience + 1000):
@@ -135,8 +134,38 @@ class Characters:
     
     def level_up(self):
         if (self.experience_points +1000):
-            return (self.level + 1) + (self.hit_points +5)
+            return (self.level + 1) + (self.hit_points + 5)
 
     def current_level(self):
         if (self.level % 2):
             return self.mock_roll + 1
+
+#------ITERATION 2------------------------------------------------
+
+
+class Fighter:
+    def __init__(self):
+        self.strength_modifier = +1
+        self.hit_points_per_level = 10
+
+class Rogue:
+    def __init__(self):
+        self.critical_damage_multiplier = 3
+        self.ignore_dexterity_ac = True
+        self.attack_stat = "Dexterity"
+        self.allowed_alignments = ["Neutral", "Evil"]
+
+class Monk:
+    def __init__(self):
+        self.hit_points_per_level = 6
+        self.attack_damage = 3
+        self.wisdom_ac_bonus = True
+        self.attack_bonus_per_level = [1, 1, 2]
+
+class Paladin:
+    def __init__(self):
+        self.hit_points_per_level = 8
+        self.evil_attack_bonus = 2
+        self.evil_critical_damage_multiplier = 3
+        self.attack_bonus = 1
+        self.allowed_alignments = ["Good"]
