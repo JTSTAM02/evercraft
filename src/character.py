@@ -10,6 +10,7 @@ class Characters:
         self.armor_class = 10
         self.hit_points = 5
         self.attack_power = 5
+        self.experience_points = 10
         self.abilities = {
             'Strength': 10,
             'Dexterity': 10,
@@ -66,8 +67,13 @@ class Characters:
 
     def attack(self, opponent, roll):
         if roll == 20:
-            return True  
+            return True
         return roll >= opponent.get_armor_class()
+
+    def successful_attack():
+        if self.attack == True:
+            return self.experience_points
+        
 
     def get_ability_score(self, ability):
         if ability in self.abilities:
@@ -90,15 +96,12 @@ class Characters:
         dexterity_modifier = self.get_ability_modifier('Dexterity')
         constitution_modifier = self.get_ability_modifier('Constitution')
 
-        # Apply Strength modifier to attack power and damage dealt
         self.attack_power += strength_modifier
         if self.attack_power < 1:
             self.attack_power = 1
 
-        # Apply Dexterity modifier to armor class
         self.armor_class += dexterity_modifier
 
-        # Apply Constitution modifier to hit points
         self.hit_points += constitution_modifier
         if self.hit_points < 1:
             self.hit_points = 1

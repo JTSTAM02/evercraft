@@ -145,21 +145,30 @@ def test_ability_scores():
 def test_apply_ability_modifiers():
     character = Characters()
 
-    # Test initial attribute values
     assert character.attack_power == 5
     assert character.armor_class == 10
     assert character.hit_points == 5
 
-    # Test ability modifiers
     character.set_ability_score('Strength', 14)
     character.set_ability_score('Dexterity', 12)
     character.set_ability_score('Constitution', 8)
     character.apply_ability_modifiers()
 
-    # Test modified attribute values
-    assert character.attack_power == 7  # Strength modifier +1
-    assert character.armor_class == 11  # Dexterity modifier +1
-    assert character.hit_points == 4    # Constitution modifier -1 (minimum 1)
+    assert character.attack_power == 7  
+    assert character.armor_class == 11  
+    assert character.hit_points == 4    
 
 
+# Feature: A Character can gain experience when attacking
+# As a character I want to accumulate experience points (xp) 
+# when I attack my enemies so that I can earn bragging rights at the tavern
 
+# When a successful attack occurs, the character gains 10 experience points
+
+
+# want to add xp points when I attack someone
+# when successful attack happens, my character gets + 10 points
+
+def test_experience_points():
+    character = Characters()
+    assert character.experience_points == 10
