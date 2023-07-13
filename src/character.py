@@ -29,12 +29,16 @@ class Characters:
     def mock_roll(self):
         return self.mock_roll
 
+#------ALIGNMENT------------------------------------------------
+
     def get_alignment(self):
         return self.alignment
 
     def set_alignment(self, n):
         self.alignment = n
 
+#------ARMOR CLASS AND HITPOINTS---------------------------------
+#------ALSO CHARACTER CAN BE DAMAGED-----------------------------
     def take_damage(self, damage):
         if damage > 0:
             self.hit_points -= damage
@@ -60,6 +64,9 @@ class Characters:
     def set_armor_class(self, n):
         self.armor_class = n
 
+#------CHARACTER CAN ATTACK----------------------------------
+#------ALSO GAIN EXPERIENCE WHEN ATTACKING-------------------
+
     def get_character_attack(self):
         return self.attack_power
 
@@ -79,6 +86,7 @@ class Characters:
         if self.attack == True:
             return self.experience_points
 
+#-----ABILITY SCORES--------------------------------------------
 
     def get_ability_score(self, ability):
         if ability in self.abilities:
@@ -89,6 +97,9 @@ class Characters:
     def set_ability_score(self, ability, score):
         if ability in self.abilities:
             self.abilities[ability] = score
+
+#-----ABILITY MODIFIERS----------------------------------------
+
 
     def get_ability_modifier(self, ability):
         score = self.get_ability_score(ability)
@@ -113,6 +124,8 @@ class Characters:
 
         if self.level + 1:
             return constitution_modifier +1
+
+#------CHARACTER LEVEL/LEVELING-------------------------------------------
 
     def character_level(self):
         if(self.level_experience + 1000):
