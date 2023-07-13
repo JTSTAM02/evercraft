@@ -22,7 +22,9 @@ class Characters:
             'Intelligence': 10,
             'Charisma': 10
         }
-    
+
+#-----SET NAME AND FAKE FUNCTION FOR ROLL-----------------------
+
     def set_name(self, n):
         self.name = n
 
