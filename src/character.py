@@ -23,8 +23,6 @@ class Characters:
             'Charisma': 10
         }
     
-    
-# take in a string
     def set_name(self, n):
         self.name = n
 

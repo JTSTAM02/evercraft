@@ -10,8 +10,6 @@ def test_set_name():
     b.set_name('Billy Bob')
     assert b.name == 'Billy Bob'
 
-
-
 #Feature: Alignment
 # As a character I want to have an alignment so that I have something to guide my actions
 
@@ -34,13 +32,6 @@ def test_set_alignment():
 
 # has an Armor Class that defaults to 10
 # has 5 Hit Points by default
-
-# _____
-
-# def test_take_damage():
-#     c = Characters()
-#     c.take_damage(3)
-#     assert c.hit_points == 2
 
 def test_is_alive():
     f = Characters()
@@ -82,8 +73,6 @@ def test_attack():
     result = j.attack(k, 15)
     assert result in [True, False]
     
-
-
 # Feature: Character Can Be Damaged
 # As an attacker I want to be able to damage my enemies so that they will die and I will live
 
