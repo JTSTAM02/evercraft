@@ -13,6 +13,7 @@ class Characters:
         self.experience_points = 10
         self.level_experience = 3000
         self.level = 3
+        self.mock_roll = 4
         self.abilities = {
             'Strength': 10,
             'Dexterity': 10,
@@ -122,3 +123,7 @@ class Characters:
     def level_up(self):
         if (self.experience_points +1000):
             return (self.level + 1) + (self.hit_points +5)
+
+    def current_level(self):
+        if (self.level % 2):
+            return self.mock_roll + 1

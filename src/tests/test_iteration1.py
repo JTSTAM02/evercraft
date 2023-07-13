@@ -190,3 +190,5 @@ def test_experience_points():
 def test_character_level():
     character = Characters()
     assert character.level_experience == 3000
+    assert character.mock_roll == 4
+    assert character.level == 3
