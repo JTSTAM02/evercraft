@@ -184,7 +184,7 @@ def test_experience_points():
 # 2000 xp -> 3rd Level
 # etc.
 # For each level:
-# hit points increase by 5 plus Con modifier
+# hit points increase by 5 plus Constitution modifier
 # 1 is added to attack roll for every even level achieved
 
 def test_character_level():

@@ -112,10 +112,13 @@ class Characters:
         if self.hit_points < 1:
             self.hit_points = 1
 
+        if self.level + 1:
+            return constitution_modifier +1
+
     def character_level(self):
         if(self.level_experience + 1000):
             return self.level_experience + self.experience_points
     
     def level_up(self):
         if (self.experience_points +1000):
-            return self.level + 1
+            return (self.level + 1) + (self.hit_points +5)
