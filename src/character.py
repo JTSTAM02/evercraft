@@ -18,7 +18,7 @@ class Characters:
             'Intelligence': 10,
             'Charisma': 10
         }
-
+    
     
 # take in a string
     def set_name(self, n):
@@ -42,7 +42,7 @@ class Characters:
     def take_damage(self, damage, roll):
         if damage > 0:
             if roll == 20:
-                self.hit_points -= damage * 2  # Double the damage for a critical hit
+                self.hit_points -= damage * 2  
             else:
                 self.hit_points -= damage
         if self.hit_points <= 0:
@@ -84,3 +84,21 @@ class Characters:
         if score is not None:
             return (score - 10) // 2
         return None
+
+    def apply_ability_modifiers(self):
+        strength_modifier = self.get_ability_modifier('Strength')
+        dexterity_modifier = self.get_ability_modifier('Dexterity')
+        constitution_modifier = self.get_ability_modifier('Constitution')
+
+        # Apply Strength modifier to attack power and damage dealt
+        self.attack_power += strength_modifier
+        if self.attack_power < 1:
+            self.attack_power = 1
+
+        # Apply Dexterity modifier to armor class
+        self.armor_class += dexterity_modifier
+
+        # Apply Constitution modifier to hit points
+        self.hit_points += constitution_modifier
+        if self.hit_points < 1:
+            self.hit_points = 1

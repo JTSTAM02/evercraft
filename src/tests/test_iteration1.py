@@ -142,4 +142,24 @@ def test_ability_scores():
 # add Dexterity modifier to armor class
 # add Constitution modifier to hit points (always at least 1 hit point)
 
+def test_apply_ability_modifiers():
+    character = Characters()
+
+    # Test initial attribute values
+    assert character.attack_power == 5
+    assert character.armor_class == 10
+    assert character.hit_points == 5
+
+    # Test ability modifiers
+    character.set_ability_score('Strength', 14)
+    character.set_ability_score('Dexterity', 12)
+    character.set_ability_score('Constitution', 8)
+    character.apply_ability_modifiers()
+
+    # Test modified attribute values
+    assert character.attack_power == 7  # Strength modifier +1
+    assert character.armor_class == 11  # Dexterity modifier +1
+    assert character.hit_points == 4    # Constitution modifier -1 (minimum 1)
+
+
 
