@@ -35,22 +35,133 @@
 # attacks roll is increased by 1 for every level instead of every other level
 # can only have Good alignment
 
-
 import pytest
-from character import Fighter, Rogue, Monk, Paladin
+from character import Characters, Fighter, Rogue, Monk, Paladin
 
-# Fighter Tests
+# Test Characters class
+
+def test_get_name():                        
+    a = Characters()
+    assert a.name == "Eric Emery the Destroyer"
+
+def test_set_name():
+    b = Characters()
+    b.set_name('Billy Bob')
+    assert b.name == 'Billy Bob'
+
+def test_get_alignment():
+    e = Characters()
+    assert e.alignment == "Neutral"
+
+def test_set_alignment():
+    d = Characters()
+    d.set_alignment('Evil')
+    assert d.alignment == 'Evil'
+
+def test_is_alive():
+    f = Characters()
+    assert f.is_alive() == True
+
+    f.take_damage(5, 0)
+    assert f.is_alive() == False
+
+
+def test_get_armor_class():
+    c = Characters()
+    assert c.get_armor_class() == 10
+
+def test_set_armor_class():
+    g = Characters()
+    g.set_armor_class(10)
+    assert g.get_armor_class() == 10
+
+
+def test_get_character_attack():
+    h = Characters ()
+    assert h.get_character_attack() == 5
+
+def test_set_character_attack():
+    i = Characters ()
+    i.set_character_attack(5)
+    assert i.get_character_attack() == 5
+
+
+def test_attack():
+    j = Characters()
+    k = Characters()
+    k.set_armor_class(10)
+    result = j.attack(k, 15)
+    assert result in [True, False]
+    
+
+def test_take_damage():
+    m = Characters()
+
+    m.take_damage(3, 0)
+    assert m.hit_points == 2
+
+    m.take_damage(20, 0)
+    assert m.hit_points == 0
+    assert m.is_alive() == False
+
+
+def test_ability_scores():
+    character = Characters()
+
+    assert character.get_ability_score('Strength') == 10
+    assert character.get_ability_modifier('Strength') == 0
+
+    character.set_ability_score('Strength', 15)
+    assert character.get_ability_score('Strength') == 15
+    assert character.get_ability_modifier('Strength') == 2
+
+    character.set_ability_score('Intelligence', 25)
+    assert character.get_ability_score('Intelligence') == 25
+    assert character.get_ability_modifier('Intelligence') == 7
+
+    assert character.get_ability_score('Agility') is None
+    assert character.get_ability_modifier('Agility') is None
+
+
+def test_apply_ability_modifiers():
+    character = Characters()
+
+    assert character.attack_power == 5
+    assert character.armor_class == 10
+    assert character.hit_points == 5
+
+    character.set_ability_score('Strength', 14)
+    character.set_ability_score('Dexterity', 12)
+    character.set_ability_score('Constitution', 8)
+    character.apply_ability_modifiers()
+
+    assert character.attack_power == 7  
+    assert character.armor_class == 11  
+    assert character.hit_points == 4    
+
+
+def test_experience_points():
+    character = Characters()
+    assert character.experience_points == 10
+
+
+def test_character_level():
+    character = Characters()
+    assert character.level_experience == 3000
+    assert character.mock_roll == 4
+    assert character.level == 3
+
+
+
+# Test Fighter class
 
 def test_fighter_attack_bonus():
     fighter = Fighter()
-    assert fighter.strength_modifier == 1
-
-def test_fighter_hit_points_per_level():
-    fighter = Fighter()
+    assert fighter.strength_modifier == +1
     assert fighter.hit_points_per_level == 10
 
 
-# Rogue Tests
+# Test Rogue class
 
 def test_rogue_critical_damage_multiplier():
     rogue = Rogue()
@@ -69,7 +180,7 @@ def test_rogue_allowed_alignments():
     assert rogue.allowed_alignments == ["Neutral", "Evil"]
 
 
-# Monk Tests
+# Test Monk class
 
 def test_monk_hit_points_per_level():
     monk = Monk()
@@ -88,7 +199,7 @@ def test_monk_attack_bonus_per_level():
     assert monk.attack_bonus_per_level == [1, 1, 2]
 
 
-# Paladin Tests
+# Test Paladin class
 
 def test_paladin_hit_points_per_level():
     paladin = Paladin()
