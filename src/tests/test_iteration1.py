@@ -173,3 +173,20 @@ def test_experience_points():
     character = Characters()
     assert character.experience_points == 10
 
+# Feature: A Character Can Level
+# As a character I want my experience points to 
+# increase my level and combat capabilities so that I can bring vengeance to my foes
+
+# Level defaults to 1
+# After 1000 experience points, the character gains a level
+# 0 xp -> 1st Level
+# 1000 xp -> 2nd Level
+# 2000 xp -> 3rd Level
+# etc.
+# For each level:
+# hit points increase by 5 plus Con modifier
+# 1 is added to attack roll for every even level achieved
+
+def test_character_level():
+    character = Characters()
+    assert character.level_experience == 3000

@@ -11,6 +11,8 @@ class Characters:
         self.hit_points = 5
         self.attack_power = 5
         self.experience_points = 10
+        self.level_experience = 3000
+        self.level = 3
         self.abilities = {
             'Strength': 10,
             'Dexterity': 10,
@@ -109,3 +111,11 @@ class Characters:
         self.hit_points += constitution_modifier
         if self.hit_points < 1:
             self.hit_points = 1
+
+    def character_level(self):
+        if(self.level_experience + 1000):
+            return self.level_experience + self.experience_points
+    
+    def level_up(self):
+        if (self.experience_points +1000):
+            return self.level + 1
