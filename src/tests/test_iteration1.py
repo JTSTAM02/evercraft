@@ -172,3 +172,4 @@ def test_apply_ability_modifiers():
 def test_experience_points():
     character = Characters()
     assert character.experience_points == 10
+

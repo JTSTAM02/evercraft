@@ -70,10 +70,14 @@ class Characters:
             return True
         return roll >= opponent.get_armor_class()
 
-    def successful_attack():
+    def successful_attack_experience():
+        if self.attack == True:
+            return self.experience_points + 10
+
+    def unsuccessful_attack_experience():
         if self.attack == True:
             return self.experience_points
-        
+
 
     def get_ability_score(self, ability):
         if ability in self.abilities:
