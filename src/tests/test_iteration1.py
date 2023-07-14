@@ -131,7 +131,7 @@ def test_ability_scores():
 # add Dexterity modifier to armor class
 # add Constitution modifier to hit points (always at least 1 hit point)
 
-def test_apply_ability_modifiers():
+def test_apply_ability_modifiers(): # Test for applying ability modifiers to attributes
     character = Characters()
 
     assert character.attack_power == 5
@@ -158,7 +158,7 @@ def test_apply_ability_modifiers():
 # want to add xp points when I attack someone
 # when successful attack happens, my character gets + 10 points
 
-def test_experience_points():
+def test_experience_points(): # Test for gaining experience points after a successful attack
     character = Characters()
     assert character.experience_points == 10
 
@@ -176,7 +176,7 @@ def test_experience_points():
 # hit points increase by 5 plus Constitution modifier
 # 1 is added to attack roll for every even level achieved
 
-def test_character_level():
+def test_character_level(): # Test for character leveling based on experience points
     character = Characters()
     assert character.level_experience == 3000
     assert character.mock_roll == 4
