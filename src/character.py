@@ -2,9 +2,11 @@
 # As a character I want to have a name so that I can be distinguished from other characters
 
 # can get and set Name
-import random
+
+
+import random # used if doing actual mock roll
 class Characters:
-    def __init__(self):
+    def __init__(self): # initializes various attributes used later
         self.name = "Eric Emery the Destroyer"
         self.alignment = "Neutral"
         self.armor_class = 10
@@ -24,7 +26,7 @@ class Characters:
         }
 
 #-----SET NAME AND FAKE FUNCTION FOR ROLL------------------------
-
+    # self always used as parameter to ensure access of own data, n as given placeholder
     def set_name(self, n):
         self.name = n
 
@@ -42,13 +44,13 @@ class Characters:
 #------ARMOR CLASS AND HITPOINTS---------------------------------
 #------ALSO CHARACTER CAN BE DAMAGED-----------------------------
 
-    def take_damage(self, damage):
+    def take_damage(self, damage): # Reduce hit_points by the given damage value
         if damage > 0:
             self.hit_points -= damage
         if self.hit_points <= 0:
             self.hit_points = 0
 
-    def take_damage(self, damage, roll):
+    def take_damage(self, damage, roll): # Reduce hit_points by the given damage value as well as doubling damage for critical hits
         if damage > 0:
             if roll == 20:
                 self.hit_points -= damage * 2  
@@ -57,7 +59,7 @@ class Characters:
         if self.hit_points <= 0:
             self.hit_points = 0
 
-    def is_alive(self):
+    def is_alive(self): # checks if character is still alive
         return self.hit_points > 0
 
     def get_armor_class(self):
@@ -69,22 +71,22 @@ class Characters:
 #------CHARACTER CAN ATTACK-------------------------------------
 #------ALSO GAIN EXPERIENCE WHEN ATTACKING----------------------
 
-    def get_character_attack(self):
+    def get_character_attack(self): # Get the attack_power attribute
         return self.attack_power
 
-    def set_character_attack(self, n):
+    def set_character_attack(self, n): # Set the attack_power attribute to the given value which is n
         self.attack_power = n
 
-    def attack(self, opponent, roll): 
+    def attack(self, opponent, roll): # Perform an attack on the opponent, based on a roll and the opponent's armor_class
         if roll == 20:
             return True
         return roll >= opponent.get_armor_class()
 
-    def successful_attack_experience():
+    def successful_attack_experience(): # Calculate the experience gained after a successful attack
         if self.attack == True:
             return self.experience_points + 10
 
-    def unsuccessful_attack_experience():
+    def unsuccessful_attack_experience(): # Calculate the experience gained after an unsuccessful attack
         if self.attack == True:
             return self.experience_points
 
@@ -108,7 +110,7 @@ class Characters:
             return (score - 10) // 2
         return None
 
-    def apply_ability_modifiers(self):
+    def apply_ability_modifiers(self): # Apply ability modifiers to relevant attributes (attack_power, armor_class, hit_points)
         strength_modifier = self.get_ability_modifier('Strength')
         dexterity_modifier = self.get_ability_modifier('Dexterity')
         constitution_modifier = self.get_ability_modifier('Constitution')
@@ -128,11 +130,11 @@ class Characters:
 
 #------CHARACTER LEVEL/LEVELING-------------------------------------
 
-    def character_level(self):
+    def character_level(self): # Calculate the character's level based on level_experience and experience_points
         if(self.level_experience + 1000):
             return self.level_experience + self.experience_points
     
-    def level_up(self):
+    def level_up(self): # Level up the character by increasing level, hit_points, and returning the new level
         if (self.experience_points +1000):
             return (self.level + 1) + (self.hit_points + 5)
 
